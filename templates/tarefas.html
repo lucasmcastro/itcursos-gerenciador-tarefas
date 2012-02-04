@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1>Tarefas</h1>
+{% if lista_tarefas %}
+<table>
+	<thead>
+		<th>Título</th>
+		<th>Descrição</th>
+		<th>Status</th>
+		<th>Responsável</th>
+		<th></th>
+		<th></th>
+		
+	</thead>
+	<tbody>
+		{% for tarefa in lista_tarefas %}
+		<tr>
+			<td>{{tarefa}}</td>
+			<td>{{tarefa.description}}</td>
+			<td>{{tarefa.status}}</td>
+			<td>{{tarefa.responsible}}</td>
+			<td> <a href="/editar_tarefa/{{tarefa.id}}">Editar  </a></td>
+			<td><form method="post" action="/remover_tarefa/{{tarefa.id}}"><input type="submit" value="Remover"> </form></td>
+			
+		</tr>
+	</tbody>
+
+  {% endfor %}
+	</table>
+	
+	{% else %}
+		<p>Não existem tarefas cadastradas</p>
+	{% endif %}
+	
+	<a href="/criar_tarefa">Criar tarefa </a>
+{% endblock %}	
+

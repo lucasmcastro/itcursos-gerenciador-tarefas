@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>editar tarefa</h2>
+<form method="post" action="/editar_tarefa/{{task.id}}">
+	{% csrf_token %}
+	{{ form.non_field_errors }}
+	{% for field in form %}
+	    {% if field.errors %}
+	        {% for error in field.errors %}
+	            <p class="error">{{ error }}</p>
+	        {% endfor %}
+	    {% endif %}
+	    <p><label>{{ field.label_tag }}</label><br/>{{ field }}</p>
+	{% endfor %}
+
+<input type="submit" value='alterar'> <a href="/">Voltar </a>
+</form>
+
+
+{% endblock %}
