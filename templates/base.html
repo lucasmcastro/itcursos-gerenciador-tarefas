@@ -4,6 +4,20 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+	{% if user.is_authenticated %}
+	    <p>Welcome, {{ user.username }}. Thanks for logging in.</p><form action="/accounts/logout/"><input type="submit" value="sair"></form>
+	
+	
+	{% else %}
+	    <p>Welcome, new user. Please log in.</p>
+	{% endif %}
+		
     {% block content %}{% endblock %}
+
+
+<h1>Teste de Arquivo Estático</h1>
+
+<img src="/static/not_bad.jpg" />
+
 </body>
 </html>

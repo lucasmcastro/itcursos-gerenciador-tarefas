@@ -1,5 +1,6 @@
 # encoding: utf-8
 from django.db import models
+from django.contrib.auth.models import User
 
 class Status(models.Model):
     name = models.CharField(u"Nome", max_length=50)
@@ -25,7 +26,7 @@ class Task(models.Model):
     title = models.CharField(u"Título", max_length=200)
     description = models.TextField(u"Descrição")
     status = models.ForeignKey(Status)
-    responsible = models.ForeignKey(Person)
+    responsible = models.ForeignKey(User)
 
     def __unicode__(self):
         return self.title
