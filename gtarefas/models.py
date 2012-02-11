@@ -1,6 +1,13 @@
 # encoding: utf-8
 from django.db import models
 
+class Status(models.Model):
+    name = models.CharField(u"Nome", max_length=50)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Person(models.Model):
     GENDER_CHOICES = (
         (u'M', u'Masculino'),
@@ -17,7 +24,7 @@ class Person(models.Model):
 class Task(models.Model):
     title = models.CharField(u"Título", max_length=200)
     description = models.TextField(u"Descrição")
-    status = models.CharField(u"Status", max_length=200)
+    status = models.ForeignKey(Status)
     responsible = models.ForeignKey(Person)
 
     def __unicode__(self):
